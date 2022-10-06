@@ -11,7 +11,7 @@ public class PlayerViewModel extends ViewModel{
 
     public Player getPlayer1() {
         if(player1==null){
-            player1 = new Player();
+            player1 = new Player(0, 0,0,"Jugador1");
         }
         return player1;
     }
@@ -21,7 +21,7 @@ public class PlayerViewModel extends ViewModel{
 
     public Player getPlayer2() {
         if(player1==null){
-            player2 = new Player();
+            player2 = new Player(0,0,0,"Jugador2");
         }
         return player2;
     }
