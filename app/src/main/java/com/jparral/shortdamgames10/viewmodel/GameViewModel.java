@@ -8,8 +8,12 @@ public class GameViewModel extends ViewModel {
 
     public Game getGame() {
         if(game==null){
-            this.game= new Game();
+            this.game= new Game(0,"game","author","pckname",0,0);
         }
         return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }
