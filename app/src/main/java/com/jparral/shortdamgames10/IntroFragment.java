@@ -37,6 +37,7 @@ public class IntroFragment extends Fragment {
         super.onStart();
         btn_Cambio =getView().findViewById(R.id.btn_cambio);
         Player player1= mplayer.getPlayer1();
+        player1.setName("Juan");
         btn_Cambio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
