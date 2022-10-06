@@ -36,7 +36,7 @@ public class EndFragment extends Fragment {
     public void onStart() {
         super.onStart();
         TextView nombre = getView().findViewById(R.id.tv_mostrar);
-        PlayerViewModel mplayer =new ViewModelProvider(this).get(PlayerViewModel.class);
+        PlayerViewModel mplayer =new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         nombre.setText(mplayer.getPlayer1().getName());
     }
 }

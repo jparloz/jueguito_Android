@@ -15,12 +15,11 @@ import com.jparral.shortdamgames10.viewmodel.GameViewModel;
 import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
 
 public class IntroFragment extends Fragment {
-    Button btn_Cambio;
-    PlayerViewModel mplayer = new ViewModelProvider(this).get(PlayerViewModel.class);
+    private Button btn_Cambio;
+    private PlayerViewModel mplayer = null;
     //TextView jugador;
 
     public IntroFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -36,6 +35,7 @@ public class IntroFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        mplayer = new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         btn_Cambio =getView().findViewById(R.id.btn_cambio);
         Player player1= mplayer.getPlayer1();
         player1.setName("Juan");
