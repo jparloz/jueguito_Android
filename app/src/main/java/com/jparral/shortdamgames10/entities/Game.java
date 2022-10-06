@@ -1,4 +1,4 @@
-package com.jparral.shortdamgames10;
+package com.jparral.shortdamgames10.entities;
 
 public class Game {
 
