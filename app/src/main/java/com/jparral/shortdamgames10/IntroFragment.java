@@ -3,6 +3,7 @@ package com.jparral.shortdamgames10;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
 
 public class IntroFragment extends Fragment {
     Button btn_Cambio;
-    PlayerViewModel mplayer;
+    PlayerViewModel mplayer = new ViewModelProvider(this).get(PlayerViewModel.class);
     //TextView jugador;
 
     public IntroFragment() {
