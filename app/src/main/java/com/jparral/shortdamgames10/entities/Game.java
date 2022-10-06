@@ -9,6 +9,18 @@ public class Game {
     private int playersNumber;
     private int level;
 
+    public Game(int id, String name, String author, String packageName, int playersNumber,int level){
+        this.id=id;
+        this.author=author;
+        this.name=name;
+        this.packageName=packageName;
+        this.playersNumber=playersNumber;
+        this.level=level;
+    }
+    public Game(){
+
+    }
+
     public String getName() {
         return name;
     }
