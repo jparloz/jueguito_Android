@@ -4,13 +4,16 @@ public class Player {
     private int id,score,level;
     private String name;
 
-    private Player(int id, int score, int level, String name)
+    public Player(){
+    }
+    public Player(int id, int score, int level, String name)
     {
         this.id=id;
         this.score=score;
         this.level=level;
         this.name=name;
     }
+
 
     public int getId() {
         return id;
