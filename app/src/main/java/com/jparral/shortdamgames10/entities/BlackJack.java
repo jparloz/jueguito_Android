@@ -19,31 +19,79 @@ public class BlackJack {
     //comprobar
     public int comprobar(ArrayList<Card> cards){
 
-
         //-1= no llegas a 21; 0 = justo 21; 1 = te has pasado de 21
         int com = -1;
-        int cuenta = 0;
+        int bill = 0;
 
         for(Card e: cards){
-            cuenta = cuenta + e.getValue();
+            bill = bill + e.getValue();
         }
 
-        if(cuenta>21){
+        if(bill>21){
             com = 1;
-        }else if (cuenta==21){
+        }else if (bill==21){
             com = 0;
         }
         return com;
     }
 
-    public int comprobarDealer(ArrayList<Card> cards){
+    public int comprobarDealer(ArrayList<Card> cards, int level){
+
+        int i = level;
+        int bill = 0;
+        int com = -1;
+
+        for(Card e: cards){
+            bill = bill + e.getValue();
+        }
 
         //-1= no llegas a 21; 0 = justo 21; 1 = te has pasado de 21
+        if (i==0){
+            //facil
+            if(bill<=14){
+                //no hace nada y pide otra carta
+                com = -1;
+            }else if(bill==21){
+                //no pide carta y devuelve 1
+                com = 0;
+            }else if(bill>21){
+                //pierde y devuelve 1
+                com = 1;
+            }
+        }else if(i==1){
+            //normal
+            if(bill<=16){
+                //no hace nada y pide otra carta
+                com = -1;
+            }else if(bill==21){
+                //no pide carta y devuelve 1
+                com = 0;
+            }else if(bill>21){
+                //pierde y devuelve 1
+                com = 1;
+            }
+        }else if(i==2){
+            //dificil
+            if(bill<=18){
+                //no hace nada y pide otra carta
+                com = -1;
+            }else if(bill==21){
+                //no pide carta y devuelve 1
+                com = 0;
+            }else if(bill>21){
+                //pierde y devuelve 1
+                com = 1;
+            }
+        }
 
-
-
-
-        return -1;
+        return com;
     }
+
+    public boolean comparar(int player, int dealer){
+        //Llamaremos a este mñetodo desde el endfragment y comprobamos quien ha ganado
+        return true;
+    }
+
+
 
 }
