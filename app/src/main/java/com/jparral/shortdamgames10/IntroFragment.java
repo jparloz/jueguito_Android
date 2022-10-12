@@ -38,7 +38,7 @@ public class IntroFragment extends Fragment {
         super.onStart();
         mplayer = new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         GameViewModel GameFragment= new ViewModelProvider(getActivity()).get(GameViewModel.class);
-        btn_Cambio =getView().findViewById(R.id.btn_cambio);
+        btn_Cambio =getView().findViewById(R.id.btn_start);
         Player player1= mplayer.getPlayer1();
         player1.setName("Juan");
         btn_Cambio.setOnClickListener(new View.OnClickListener() {
