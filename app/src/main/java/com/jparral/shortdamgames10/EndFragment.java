@@ -6,14 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
-
-import org.w3c.dom.Text;
 
 
 public class EndFragment extends Fragment {
@@ -35,7 +32,7 @@ public class EndFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        TextView nombre = getView().findViewById(R.id.tv_mostrar);
+        TextView nombre = getView().findViewById(R.id.tv_puntuacion);
         PlayerViewModel mplayer =new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         nombre.setText(mplayer.getPlayer1().getName());
     }

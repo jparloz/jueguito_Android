@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.jparral.shortdamgames10.entities.Game;
 import com.jparral.shortdamgames10.entities.Player;
@@ -16,6 +17,8 @@ import com.jparral.shortdamgames10.viewmodel.GameViewModel;
 import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
 
 public class IntroFragment extends Fragment {
+    private EditText et_name;
+    private GameViewModel mgame;
     private Button btn_Cambio;
     private PlayerViewModel mplayer = null;
     //TextView jugador;
@@ -36,16 +39,14 @@ public class IntroFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mplayer = new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
-        GameViewModel GameFragment= new ViewModelProvider(getActivity()).get(GameViewModel.class);
-        btn_Cambio =getView().findViewById(R.id.btn_start);
+        loadXML();
         Player player1= mplayer.getPlayer1();
-        player1.setName("Juan");
+        player1.setName(String.valueOf(et_name.getText()));
         btn_Cambio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Game game1 = new Game();
-
+                Game game1 = mgame.getGame();
+                game1.setLevel(0);
                 loadFragment2(new GameFragment());
             }
         });
@@ -58,5 +59,11 @@ public class IntroFragment extends Fragment {
                 .replace(R.id.f_container,fragmento)
                 .addToBackStack(null)
                 .commit();
+    }
+    public void loadXML(){
+        mplayer = new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
+        mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
+        btn_Cambio = getView().findViewById(R.id.btn_start);
+        et_name = getView().findViewById(R.id.et_nombre);
     }
 }
