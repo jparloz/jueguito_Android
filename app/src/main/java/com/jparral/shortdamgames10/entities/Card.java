@@ -65,4 +65,7 @@ public class Card {
         return name;
 
     }
+    public int getValue(){
+        return value;
+    }
 }

@@ -54,9 +54,6 @@ public class Deck {
         return myCards.get(nextCardIndex);
     }
 
-    public List<Card> getMyCards() {
-        return myCards;
-    }
     public void deleteFirstCard(){
         myCards.remove(0);
     }

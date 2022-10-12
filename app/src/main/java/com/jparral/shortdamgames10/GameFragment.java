@@ -3,6 +3,7 @@ package com.jparral.shortdamgames10;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,17 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.jparral.shortdamgames10.entities.BlackJack;
 import com.jparral.shortdamgames10.entities.Card;
+import com.jparral.shortdamgames10.entities.Dealer;
 import com.jparral.shortdamgames10.entities.Deck;
+import com.jparral.shortdamgames10.viewmodel.GameViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameFragment extends Fragment {
 
-    Deck deck;
-    List<Card> playerHand;
-    List<Card> dealerHand;
+    //Deck deck;
+    //List<Card> playerHand;
+    //List<Card> dealerHand;
+    Dealer bench;
+    BlackJack casino;
+
     public GameFragment() {
     }
 
@@ -37,15 +44,36 @@ public class GameFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        startAttributes();
-        Log.d("Pimero",deck.toString());
+        bench = new Dealer();
+        bench.startAttributes();
+        //startAttributes();
+        //Log.d("Pimero",deck.toString());
+
         Button btn_pedirCarta = getView().findViewById(R.id.btn_pedirCarta);
         btn_pedirCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playerHand.add(deck.getNextCard());
+                //playerHand.add(deck.getNextCard());
+                bench.getCardPlayer();//pillamos carta
+                int com = casino.comprobar(bench.getPlayerHand());
+
+                if(com>=0){
+                    loadFragment2(new EndFragment());
+                }
             }
         });
+
+        Button btn_plantarse = getView().findViewById(R.id.btn_plantarse);
+        btn_plantarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bench.getDealerHand();//banca pide carta
+                int com = casino.comprobar((bench.getDealerHand()));
+
+
+            }
+        });
+
     }
     private void loadFragment2(Fragment fragmento){
         getActivity()
@@ -55,7 +83,7 @@ public class GameFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
     }
-    private void startAttributes(){
+    /*private void startAttributes(){
         deck = new Deck();
         deck.shuffle();
         Log.d("Pimero",deck.toString());
@@ -67,5 +95,5 @@ public class GameFragment extends Fragment {
             dealerHand.add(deck.getNextCard());
             Log.d("Pimero",playerHand.get(i).toString() + " " +dealerHand.get(i).toString());
         }
-    }
+    }*/
 }
