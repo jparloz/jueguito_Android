@@ -6,10 +6,11 @@ public class Card {
 
     private String suit;
 
-    public Card(String suit, int value) {
+    public Card( String suit, int value) {
         this.suit = suit;
         this.value = value;
     }
+
     public String toString() {
 
         return this.suit + " " + this.value;

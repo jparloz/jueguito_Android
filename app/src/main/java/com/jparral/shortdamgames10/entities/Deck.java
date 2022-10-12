@@ -6,19 +6,16 @@ import java.util.Random;
 
 public class Deck {
 
-    private int nextCardIndex;
+    private int nextCardIndex=-1;
 
-    List<Card> myCards ;
-    Card[] deck = new Card[52];
+    List<Card> myCards;
 
     public Deck(){
         String [] suits ={"Heart","Spades","Clover","Diamond"};
-        new ArrayList<Card>();
-
+        myCards=new ArrayList<Card>();
         for(int k = 0; k<suits.length;k++) {
-            for(int j = 0; j<13;j++) {
+            for(int j = 1; j<13;j++) {
                 myCards.add(new Card(suits[k],j));
-
             }
 
         }
@@ -28,8 +25,8 @@ public class Deck {
 
         String str = "";
 
-        for (int i = 0; i < deck.length; i++) {
-            str +=	deck[i].toString() + " ";
+        for (int i = 0; i < myCards.size(); i++) {
+            str +=	myCards.get(i).toString() + " ";
         }
         return str;
     }
@@ -47,10 +44,20 @@ public class Deck {
     public void shuffle()  { //barajar
         Random rn = new Random();
         for (int i = 0; i < 4; i++){
-            for (int j = 0; j < deck.length; j++) {
-                swapCards(i, rn.nextInt(52));
+            for (int j = 0; j < myCards.size(); j++) {
+                swapCards(i, rn.nextInt(48));
             }
         }
         nextCardIndex = 0;
+    }
+    public Card getNextCard(){
+        return myCards.get(nextCardIndex);
+    }
+
+    public List<Card> getMyCards() {
+        return myCards;
+    }
+    public void deleteFirstCard(){
+        myCards.remove(0);
     }
 }
