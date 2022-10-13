@@ -51,7 +51,7 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                bench.setCardPlayer();
+                bench.addCardPlayer();
 
                 int com = casino.comprobar(bench.getPlayerHand());
 
@@ -73,22 +73,23 @@ public class GameFragment extends Fragment {
                     com = casino.comprobarDealer((bench.getDealerHand()),level);//falta pasar parametro level
 
                     if(com==-1){//pedimos carta
-                        bench.setCardDealer();
+                        bench.addCardDealer();
                     }else if(com==0){
-                        //entre dificulta y 21, salimos del bucle y comparamos
+                        //entre 14 y 21, salimos del bucle y comparamos
                     }else if(com==1){
-                        //Pierde la banca, se anuncia jugador ganador, se guarda score y vamos al end
+                        //Pierde la banca, se anuncia jugador ganador, se guarda score y vamos al end score score 80
 
                         loadFragment2(new EndFragment());
                     }
                 }
+
                 int final_game = casino.comparar(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
                 if (final_game==1){
-                    //player win
+                    //player win 100
                 }else if(final_game==-1){
-                    //dealer win
+                    //dealer win  score 40
                 }else{
-                    //empate
+                    //empate score 50
                 }
 
             }
