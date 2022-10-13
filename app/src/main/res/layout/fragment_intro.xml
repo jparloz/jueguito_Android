@@ -22,7 +22,7 @@
         android:id="@+id/imageView"
         android:layout_width="219dp"
         android:layout_height="200dp"
-        android:layout_marginTop="552dp"
+        android:layout_marginTop="532dp"
         android:src="@drawable/primerfragmento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -33,15 +33,14 @@
         android:id="@+id/tv_description"
         android:layout_width="350dp"
         android:layout_height="154dp"
-        android:text="TextView"
+        android:text="Classic blackjack game. The goal is to add 21 with the cards you have been given. You can fold if you consider that your number is close enough to 21."
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225"
-        tools:text="Classic blackjack game. The goal is to add 21 with the cards you have been given. You can fold if you consider that your number is close enough to 21." />
+        app:layout_constraintVertical_bias="0.225" />
 
     <TextView
         android:id="@+id/tv_title"

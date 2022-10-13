@@ -30,6 +30,7 @@ public class Dealer {
             deck.deleteFirstCard();
             Log.d("Pimero",playerHand.get(i).toString() + " " +dealerHand.get(i).toString());
         }
+        Log.d("Pimero",deck.toString());
     }
 
     public void addCardPlayer(){

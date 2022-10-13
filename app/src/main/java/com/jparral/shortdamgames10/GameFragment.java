@@ -43,8 +43,9 @@ public class GameFragment extends Fragment {
     public void onStart() {
         super.onStart();
         bench = new Dealer();
+        casino = new BlackJack();
         bench.startAttributes();
-
+        Log.d("Pimero", bench.getPlayerHand().toString());
 
         Button btn_pedirCarta = getView().findViewById(R.id.btn_pedirCarta);
         btn_pedirCarta.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +53,8 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
 
                 bench.addCardPlayer();
-
-                int com = casino.comprobar(bench.getPlayerHand());
-
+                int com=casino.comprobar(bench.getPlayerHand());
+                Log.d("Pimero", bench.getPlayerHand().toString());
                 if(com==1){
                     //Derrota no es necesario guardar score, se queda en 0 salimos a end
                     loadFragment2(new EndFragment());
@@ -70,26 +70,26 @@ public class GameFragment extends Fragment {
                 int level = 0; //sustituir por dato level gameviewmodel
                 int com = -1;
                 while (com==-1){
+                    Log.d("Pimero", bench.getDealerHand().toString());
                     com = casino.comprobarDealer((bench.getDealerHand()),level);//falta pasar parametro level
 
                     if(com==-1){//pedimos carta
                         bench.addCardDealer();
                     }else if(com==0){
-                        //entre 14 y 21, salimos del bucle y comparamos
+                        //entre dificulta y 21, salimos del bucle y comparamos
                     }else if(com==1){
-                        //Pierde la banca, se anuncia jugador ganador, se guarda score y vamos al end score score 80
+                        //Pierde la banca, se anuncia jugador ganador, se guarda score y vamos al end
 
                         loadFragment2(new EndFragment());
                     }
                 }
-
                 int final_game = casino.comparar(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
                 if (final_game==1){
-                    //player win 100
+                    loadFragment2(new EndFragment());
                 }else if(final_game==-1){
-                    //dealer win  score 40
+                    loadFragment2(new EndFragment());
                 }else{
-                    //empate score 50
+                    loadFragment2(new EndFragment());
                 }
 
             }

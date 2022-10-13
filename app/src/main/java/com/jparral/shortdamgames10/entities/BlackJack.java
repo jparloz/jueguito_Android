@@ -1,5 +1,7 @@
 package com.jparral.shortdamgames10.entities;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import com.jparral.shortdamgames10.viewmodel.GameViewModel;
@@ -17,11 +19,9 @@ public class BlackJack {
 
     //comprobar
     public int comprobar(ArrayList<Card> cards){
-
         //-1= no llegas a 21; 0 = justo 21; 1 = te has pasado de 21
         int com = -1;
         int bill = 0;
-
         for(Card e: cards){
             bill = bill + e.getValue();
         }
@@ -59,8 +59,6 @@ public class BlackJack {
             }else{
                 com = 0;
             }
-
-
 
         }else if(i==1){
             //normal
@@ -105,6 +103,7 @@ public class BlackJack {
         }else{
             i = 0;//empate
         }
+
 
         //Llamaremos a este mñetodo desde el endfragment y comprobamos quien ha ganado
         return i;
