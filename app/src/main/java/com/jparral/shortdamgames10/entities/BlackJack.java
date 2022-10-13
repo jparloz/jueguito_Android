@@ -106,7 +106,6 @@ public class BlackJack {
             i = 0;//empate
         }
 
-
         //Llamaremos a este mñetodo desde el endfragment y comprobamos quien ha ganado
         return i;
     }
