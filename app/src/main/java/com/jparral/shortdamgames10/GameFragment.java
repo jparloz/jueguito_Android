@@ -17,6 +17,7 @@ import com.jparral.shortdamgames10.entities.Dealer;
 import com.jparral.shortdamgames10.entities.Deck;
 import com.jparral.shortdamgames10.entities.Game;
 import com.jparral.shortdamgames10.viewmodel.GameViewModel;
+import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class GameFragment extends Fragment {
 
     Dealer bench;
     BlackJack casino;
+    private GameViewModel mgame = null;
 
     public GameFragment() {
     }
@@ -44,6 +46,7 @@ public class GameFragment extends Fragment {
         super.onStart();
         bench = new Dealer();
         casino = new BlackJack();
+        mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
         bench.startAttributes();
         Log.d("Pimero", bench.getPlayerHand().toString());
 
@@ -67,7 +70,7 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Mostrar segunda carta dealer
-                int level = 0; //sustituir por dato level gameviewmodel
+                int level = mgame.getGame().getLevel(); //sustituir por dato level gameviewmodel
                 int com = -1;
                 while (com==-1){
                     Log.d("Pimero", bench.getDealerHand().toString());
