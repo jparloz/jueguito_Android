@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class BlackJack {
 
-    GameViewModel GameFragment;
     int level;
 
     public BlackJack(){
@@ -37,7 +36,7 @@ public class BlackJack {
 
     public int comprobarDealer(ArrayList<Card> cards, int level){
 
-        int i = level;
+        int i = level;//devolver cuenta total
         int bill = 0;
         int com = -1;
 
@@ -45,8 +44,8 @@ public class BlackJack {
             bill = bill + e.getValue();
         }
 
-        //-1= no llegas a 21; 0 = justo 21; 1 = te has pasado de 21
-        if (i==0){
+        //-1= no llegas a 21; 0 = 21 o menos; 1 = te has pasado de 21
+        if (i==0){//Niveles de dificultad
             //facil
             if(bill<=14){
                 //no hace nada y pide otra carta
@@ -57,7 +56,12 @@ public class BlackJack {
             }else if(bill>21){
                 //pierde y devuelve 1
                 com = 1;
+            }else{
+                com = 0;
             }
+
+
+
         }else if(i==1){
             //normal
             if(bill<=16){
@@ -69,7 +73,10 @@ public class BlackJack {
             }else if(bill>21){
                 //pierde y devuelve 1
                 com = 1;
+            }else{
+                com = 0;
             }
+
         }else if(i==2){
             //dificil
             if(bill<=18){
@@ -81,15 +88,27 @@ public class BlackJack {
             }else if(bill>21){
                 //pierde y devuelve 1
                 com = 1;
+            }else{
+                com = 0;
             }
         }
-
         return com;
     }
 
-    public boolean comparar(int player, int dealer){
+    public int comparar(int player, int dealer){
+        int i;
+
+        if(player>dealer){
+            i = 1;//victoria jugador
+        }else if(dealer<player){
+            i = -1;//victoria dealer
+        }else{
+            i = 0;//empate
+        }
+
+
         //Llamaremos a este mñetodo desde el endfragment y comprobamos quien ha ganado
-        return true;
+        return i;
     }
 
 

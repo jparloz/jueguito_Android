@@ -51,12 +51,14 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                bench.getCardPlayer();
+                bench.setCardPlayer();
+
                 int com = casino.comprobar(bench.getPlayerHand());
 
-                if(com>=0){
+                if(com==1){
+                    //Derrota no es necesario guardar score, se queda en 0 salimos a end
                     loadFragment2(new EndFragment());
-                }
+                }//en caso -1 no hacemos nada, en caso 0 tampoco, se debe comparar con el dealer o podemos pedir carta
             }
         });
 
@@ -64,12 +66,30 @@ public class GameFragment extends Fragment {
         btn_plantarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bench.getDealerHand();//banca pide carta
+                //Mostrar segunda carta dealer
                 int level = 0; //sustituir por dato level gameviewmodel
-                int com = casino.comprobarDealer((bench.getDealerHand()),level);//falta pasar parametro level
+                int com = -1;
+                while (com==-1){
+                    com = casino.comprobarDealer((bench.getDealerHand()),level);//falta pasar parametro level
 
+                    if(com==-1){//pedimos carta
+                        bench.setCardDealer();
+                    }else if(com==0){
+                        //entre dificulta y 21, salimos del bucle y comparamos
+                    }else if(com==1){
+                        //Pierde la banca, se anuncia jugador ganador, se guarda score y vamos al end
 
-
+                        loadFragment2(new EndFragment());
+                    }
+                }
+                int final_game = casino.comparar(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
+                if (final_game==1){
+                    //player win
+                }else if(final_game==-1){
+                    //dealer win
+                }else{
+                    //empate
+                }
 
             }
         });

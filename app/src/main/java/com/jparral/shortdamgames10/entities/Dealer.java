@@ -23,23 +23,38 @@ public class Dealer {
         dealerHand = new ArrayList<Card>();
         for (int i = 0; i < 2 ;i++ ){
             playerHand.add(deck.getNextCard());
-            deck.deleteFirstCard();
+            delCard();
+            //deck.deleteFirstCard();
             dealerHand.add(deck.getNextCard());
-            deck.deleteFirstCard();
+            delCard();
+            //deck.deleteFirstCard();
             Log.d("Pimero",playerHand.get(i).toString() + " " +dealerHand.get(i).toString());
         }
     }
 
-    public void getCardPlayer(){
+    public void setCardPlayer(){
         playerHand.add(deck.getNextCard());
+        delCard();
     }
-    public void getCardDealer(){
+    public void setCardDealer(){
         dealerHand.add(deck.getNextCard());
+        delCard();
     }
 
     public void delCard(){
         deck.deleteFirstCard();
     }
+
+    public int total_bill(ArrayList<Card> cards){
+        int bill = 0;
+
+        for (Card i: cards){
+            bill = bill + i.getValue();
+        }
+        return bill;
+    }
+
+
 
     public ArrayList<Card> getPlayerHand(){
         return (ArrayList<Card>) playerHand;
