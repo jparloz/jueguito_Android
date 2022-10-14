@@ -48,7 +48,7 @@ public class GameFragment extends Fragment {
         casino = new BlackJack();
         mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
         bench.startAttributes();
-        Log.d("Pimero", bench.getPlayerHand().toString());
+        Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));
 
         Button btn_pedirCarta = getView().findViewById(R.id.btn_pedirCarta);
         btn_pedirCarta.setOnClickListener(new View.OnClickListener() {

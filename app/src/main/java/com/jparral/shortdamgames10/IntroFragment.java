@@ -8,8 +8,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.jparral.shortdamgames10.entities.Game;
 import com.jparral.shortdamgames10.entities.Player;
@@ -20,6 +22,7 @@ public class IntroFragment extends Fragment {
     private EditText et_name;
     private GameViewModel mgame;
     private Button btn_Cambio;
+    private Spinner sp;
     private PlayerViewModel mplayer = null;
     //TextView jugador;
 
@@ -45,8 +48,7 @@ public class IntroFragment extends Fragment {
         btn_Cambio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Game game1 = mgame.getGame();
-                game1.setLevel(0);
+                dificultSrelector();
                 loadFragment2(new GameFragment());
             }
         });
@@ -65,5 +67,28 @@ public class IntroFragment extends Fragment {
         mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
         btn_Cambio = getView().findViewById(R.id.btn_start);
         et_name = getView().findViewById(R.id.et_nombre);
+        sp = getView().findViewById(R.id.sp_dif);
+        loadSpiner(sp);
+
+    }
+    private void loadSpiner(Spinner sp) {
+        String[] difSelec = getResources().getStringArray(R.array.difficult_array);
+        ArrayAdapter<String> difAdapter = new ArrayAdapter <String>
+                (getContext(), android.R.layout.simple_spinner_dropdown_item,difSelec);
+        sp.setAdapter(difAdapter);
+    }
+    private void dificultSrelector (){
+        String diflvl = (String)sp.getSelectedItem();
+        switch(diflvl){
+            case "Hard":
+                mgame.getGame().setLevel(2);
+                break;
+            case "Medium":
+                mgame.getGame().setLevel(1);
+                break;
+            case "Easy":
+                mgame.getGame().setLevel(0);
+                break;
+        }
     }
 }
