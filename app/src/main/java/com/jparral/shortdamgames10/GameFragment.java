@@ -27,6 +27,7 @@ public class GameFragment extends Fragment {
     Dealer bench;
     BlackJack casino;
     private GameViewModel mgame = null;
+    private PlayerViewModel mplayer = null;
 
     public GameFragment() {
     }
@@ -47,6 +48,7 @@ public class GameFragment extends Fragment {
         bench = new Dealer();
         casino = new BlackJack();
         mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
+        mplayer= new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         bench.startAttributes();
         Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));
 
@@ -54,14 +56,20 @@ public class GameFragment extends Fragment {
         btn_pedirCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 bench.addCardPlayer();
                 int com=casino.comprobar(bench.getPlayerHand());
                 Log.d("Pimero", bench.getPlayerHand().toString());
-                if(com==1){
-                    //Derrota no es necesario guardar score, se queda en 0 salimos a end
-                    loadFragment2(new EndFragment());
-                }//en caso -1 no hacemos nada, en caso 0 tampoco, se debe comparar con el dealer o podemos pedir carta
+                switch (com){
+                    case -1:
+                        break;
+                    case 0:
+                        btn_pedirCarta.setEnabled(false);
+                        break;
+                    case 1:
+                        mplayer.getPlayer1().setScore(0);
+                        loadFragment2(new EndFragment());
+                        break;
+                }
             }
         });
 
@@ -76,25 +84,33 @@ public class GameFragment extends Fragment {
                     Log.d("Pimero", bench.getDealerHand().toString());
                     com = casino.comprobarDealer((bench.getDealerHand()),level);//falta pasar parametro level
 
-                    if(com==-1){//pedimos carta
-                        bench.addCardDealer();
-                    }else if(com==0){
-                        //entre dificulta y 21, salimos del bucle y comparamos
-                    }else if(com==1){
-                        //Pierde la banca, se anuncia jugador ganador, se guarda score y vamos al end
-
-                        loadFragment2(new EndFragment());
+                    switch (com){
+                        case -1:
+                            bench.addCardDealer();
+                            break;
+                        case 0:
+                            break;
+                        case 1:
+                            mplayer.getPlayer1().setScore(80);
+                            loadFragment2(new EndFragment());
+                            break;
                     }
                 }
                 int final_game = casino.comparar(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
-                if (final_game==1){
-                    loadFragment2(new EndFragment());
-                }else if(final_game==-1){
-                    loadFragment2(new EndFragment());
-                }else{
-                    loadFragment2(new EndFragment());
+                switch (final_game){
+                    case-1:
+                        mplayer.getPlayer1().setScore(20);
+                        loadFragment2(new EndFragment());
+                        break;
+                    case 0:
+                        mplayer.getPlayer1().setScore(50);
+                        loadFragment2(new EndFragment());
+                        break;
+                    case 1:
+                        mplayer.getPlayer1().setScore(60);
+                        loadFragment2(new EndFragment());
+                        break;
                 }
-
             }
         });
 
