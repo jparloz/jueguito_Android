@@ -96,7 +96,7 @@ public class GameFragment extends Fragment {
                         case 0:
                             break;
                         case 1:
-                            mplayer.getPlayer1().setScore(80);
+                            mplayer.getPlayer1().setScore(60);
 
                             waitandSkipFragment();
                             break;
@@ -117,7 +117,7 @@ public class GameFragment extends Fragment {
                         waitandSkipFragment();
                         break;
                     case 1:
-                        mplayer.getPlayer1().setScore(60);
+                        mplayer.getPlayer1().setScore(80);
                         disabledButtons(btn_pedirCarta);
                         disabledButtons(btn_plantarse);
                         waitandSkipFragment();

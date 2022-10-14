@@ -94,13 +94,13 @@ public class BlackJack {
     }
 
     public int comparar(int player, int dealer){
-        int i;
+        int i=1;
 
         if(player>dealer){
             i = 1;//victoria jugador
         }else if(dealer<player){
             i = -1;//victoria dealer
-        }else{
+        }else if(player==dealer){//cambio para comprobar, parece que siempre pasaba 0 y era empate
             i = 0;//empate
         }
 
