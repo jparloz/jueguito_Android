@@ -2,14 +2,17 @@ package com.jparral.shortdamgames10;
 
 import android.os.Bundle;
 
+import androidx.core.os.ProcessCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.jparral.shortdamgames10.entities.BlackJack;
 import com.jparral.shortdamgames10.entities.Card;
@@ -28,6 +31,7 @@ public class GameFragment extends Fragment {
     BlackJack casino;
     private GameViewModel mgame = null;
     private PlayerViewModel mplayer = null;
+    TextView cards;
 
     public GameFragment() {
     }
@@ -45,18 +49,16 @@ public class GameFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        bench = new Dealer();
-        casino = new BlackJack();
-        mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
-        mplayer= new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
-        bench.startAttributes();
+        instanceObjects();
         Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));
-
+        cards=getView().findViewById(R.id.tv_cartasJugador);
+        cards.setText(bench.getPlayerHand().toString());
         Button btn_pedirCarta = getView().findViewById(R.id.btn_pedirCarta);
         btn_pedirCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bench.addCardPlayer();
+                cards.setText(bench.getPlayerHand().toString());
                 int com=casino.comprobar(bench.getPlayerHand());
                 Log.d("Pimero", bench.getPlayerHand().toString());
                 switch (com){
@@ -67,7 +69,8 @@ public class GameFragment extends Fragment {
                         break;
                     case 1:
                         mplayer.getPlayer1().setScore(0);
-                        loadFragment2(new EndFragment());
+                        btn_pedirCarta.setEnabled(false);
+                        waitandSkipFragment();
                         break;
                 }
             }
@@ -77,6 +80,8 @@ public class GameFragment extends Fragment {
         btn_plantarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                disabledButtons(btn_pedirCarta);
+                disabledButtons(btn_plantarse);
                 //Mostrar segunda carta dealer
                 int level = mgame.getGame().getLevel(); //sustituir por dato level gameviewmodel
                 int com = -1;
@@ -92,7 +97,8 @@ public class GameFragment extends Fragment {
                             break;
                         case 1:
                             mplayer.getPlayer1().setScore(80);
-                            loadFragment2(new EndFragment());
+
+                            waitandSkipFragment();
                             break;
                     }
                 }
@@ -100,27 +106,51 @@ public class GameFragment extends Fragment {
                 switch (final_game){
                     case-1:
                         mplayer.getPlayer1().setScore(20);
-                        loadFragment2(new EndFragment());
+                        disabledButtons(btn_pedirCarta);
+                        disabledButtons(btn_plantarse);
+                        waitandSkipFragment();
                         break;
                     case 0:
                         mplayer.getPlayer1().setScore(50);
-                        loadFragment2(new EndFragment());
+                        disabledButtons(btn_pedirCarta);
+                        disabledButtons(btn_plantarse);
+                        waitandSkipFragment();
                         break;
                     case 1:
                         mplayer.getPlayer1().setScore(60);
-                        loadFragment2(new EndFragment());
+                        disabledButtons(btn_pedirCarta);
+                        disabledButtons(btn_plantarse);
+                        waitandSkipFragment();
                         break;
                 }
             }
         });
 
     }
+    public void instanceObjects(){
+        bench = new Dealer();
+        casino = new BlackJack();
+        mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
+        mplayer= new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
+        bench.startAttributes();
+    }
+    public void waitandSkipFragment() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                loadFragment2(new EndFragment());
+            }
+        }, 5000);
+    }
     private void loadFragment2(Fragment fragmento){
         getActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.f_container,fragmento)
-                .addToBackStack(null)
                 .commit();
     }
+    private void disabledButtons(Button btn){
+        btn.setEnabled(false);
+    }
+
 }
