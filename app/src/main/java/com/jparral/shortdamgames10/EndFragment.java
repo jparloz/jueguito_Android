@@ -46,6 +46,8 @@ public class EndFragment extends Fragment {
 
         if (score>50){
             iv_res.setImageResource(R.drawable.win);
+        }else if (score==50){
+            iv_res.setImageResource(R.drawable.draw);
         }
 
 
