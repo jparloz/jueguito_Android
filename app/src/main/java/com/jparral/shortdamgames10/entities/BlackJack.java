@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class BlackJack {
 
-    int level;
-
     public BlackJack(){
 
     }
@@ -94,21 +92,19 @@ public class BlackJack {
     }
 
     public int comparar(int player, int dealer){
-        int i=1;
+        int i;
 
         if(player>dealer){
-            i = 1;//victoria jugador
-        }else if(dealer<player){
-            i = -1;//victoria dealer
-        }else if(player==dealer){//cambio para comprobar, parece que siempre pasaba 0 y era empate
-            i = 0;//empate
+            i=1;//victoria jugador
+        }else{
+            if (dealer>player){
+                i=-1;//victoria dealer
+            }else{
+                i=0;//empate
+            }
         }
-
 
         //Llamaremos a este mñetodo desde el endfragment y comprobamos quien ha ganado
         return i;
     }
-
-
-
 }

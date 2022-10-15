@@ -32,6 +32,8 @@ public class GameFragment extends Fragment {
     private GameViewModel mgame = null;
     private PlayerViewModel mplayer = null;
     TextView cards;
+    Button btn_plantarse;
+    Button btn_pedirCarta;
 
     public GameFragment() {
     }
@@ -53,7 +55,7 @@ public class GameFragment extends Fragment {
         Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));
         cards=getView().findViewById(R.id.tv_cartasJugador);
         cards.setText(bench.getPlayerHand().toString());
-        Button btn_pedirCarta = getView().findViewById(R.id.btn_pedirCarta);
+        btn_pedirCarta = getView().findViewById(R.id.btn_pedirCarta);
         btn_pedirCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,23 +67,24 @@ public class GameFragment extends Fragment {
                     case -1:
                         break;
                     case 0:
-                        btn_pedirCarta.setEnabled(false);
+                        disabledButtons(btn_pedirCarta);
                         break;
                     case 1:
                         mplayer.getPlayer1().setScore(0);
-                        btn_pedirCarta.setEnabled(false);
+                        disabledButtons();
                         waitandSkipFragment();
                         break;
                 }
             }
         });
 
-        Button btn_plantarse = getView().findViewById(R.id.btn_plantarse);
+        btn_plantarse = getView().findViewById(R.id.btn_plantarse);
         btn_plantarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 disabledButtons(btn_pedirCarta);
                 disabledButtons(btn_plantarse);
+                Log.d("Primero", bench.getDealerHand().toString());
                 //Mostrar segunda carta dealer
                 int level = mgame.getGame().getLevel(); //sustituir por dato level gameviewmodel
                 int com = -1;
@@ -97,29 +100,26 @@ public class GameFragment extends Fragment {
                             break;
                         case 1:
                             mplayer.getPlayer1().setScore(60);
-
                             waitandSkipFragment();
                             break;
                     }
                 }
                 int final_game = casino.comparar(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
+                Log.d("Primero", String.valueOf(final_game));
                 switch (final_game){
                     case-1:
                         mplayer.getPlayer1().setScore(20);
-                        disabledButtons(btn_pedirCarta);
-                        disabledButtons(btn_plantarse);
+                        disabledButtons();
                         waitandSkipFragment();
                         break;
                     case 0:
                         mplayer.getPlayer1().setScore(50);
-                        disabledButtons(btn_pedirCarta);
-                        disabledButtons(btn_plantarse);
+                        disabledButtons();
                         waitandSkipFragment();
                         break;
                     case 1:
                         mplayer.getPlayer1().setScore(80);
-                        disabledButtons(btn_pedirCarta);
-                        disabledButtons(btn_plantarse);
+                        disabledButtons();
                         waitandSkipFragment();
                         break;
                 }
@@ -152,5 +152,8 @@ public class GameFragment extends Fragment {
     private void disabledButtons(Button btn){
         btn.setEnabled(false);
     }
-
+    private void disabledButtons(){
+        btn_plantarse.setEnabled(false);
+        btn_pedirCarta.setEnabled(false);
+    }
 }
