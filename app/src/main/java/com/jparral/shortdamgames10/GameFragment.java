@@ -101,41 +101,21 @@ public class GameFragment extends Fragment {
                     switch (com){
                         case -1:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            try {
-                                wait(4000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            waitandSkipFragment(4000);
                             bench.addCardDealer();
                             d_cards.setText(bench.getDealerHand().toString());
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            try {
-                                wait(4000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            waitandSkipFragment(4000);
                             break;
                         case 0:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            try {
-                                wait(4000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            waitandSkipFragment(4000);
                             break;
                         case 1:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            try {
-                                wait(4000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            waitandSkipFragment(4000);
                             mplayer.getPlayer1().setScore(60);
-                            try {
-                                wait(4000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            waitandSkipFragment(4000);
                             break;
                     }
                 }
@@ -172,13 +152,6 @@ public class GameFragment extends Fragment {
         mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
         mplayer= new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         bench.startAttributes();
-    }
-    public void wait(int milsec) {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-            }
-        }, milsec);
     }
 
     public void waitandSkipFragment(int milsec) {
