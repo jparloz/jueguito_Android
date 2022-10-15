@@ -29,8 +29,9 @@ public class GameFragment extends Fragment {
     private GameViewModel mgame = null;
     private PlayerViewModel mplayer = null;
     TextView cards;
-    Button btn_plantarse;
-    Button btn_pedirCarta;
+    TextView d_cards;
+    Button btn_stand;
+    Button btn_hitCard;
     ImageView iv_playerCard;
     TextView tv_p_hand;
     ImageView iv_dealerCard;
@@ -55,10 +56,10 @@ public class GameFragment extends Fragment {
         instanceObjects();
         loadCards();
         Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));
-        cards=getView().findViewById(R.id.tv_cartasJugador);
+        cards=getView().findViewById(R.id.tv_player_cards);
         cards.setText(bench.getPlayerHand().toString());
-        btn_pedirCarta = getView().findViewById(R.id.btn_pedirCarta);
-        btn_pedirCarta.setOnClickListener(new View.OnClickListener() {
+        btn_hitCard = getView().findViewById(R.id.btn_hit_card);
+        btn_hitCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bench.addCardPlayer();
@@ -70,7 +71,7 @@ public class GameFragment extends Fragment {
                     case -1:
                         break;
                     case 0:
-                        disabledButtons(btn_pedirCarta);
+                        disabledButtons(btn_hitCard);
                         break;
                     case 1:
                         mplayer.getPlayer1().setScore(0);
@@ -81,37 +82,60 @@ public class GameFragment extends Fragment {
             }
         });
 
-        btn_plantarse = getView().findViewById(R.id.btn_plantarse);
-        btn_plantarse.setOnClickListener(new View.OnClickListener() {
+        btn_stand = getView().findViewById(R.id.btn_stand);
+        btn_stand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                disabledButtons(btn_pedirCarta);
-                disabledButtons(btn_plantarse);
+                d_cards=getView().findViewById(R.id.tv_dealer_cards);
+                d_cards.setText(bench.getDealerHand().toString());
+                disabledButtons(btn_hitCard);
+                disabledButtons(btn_stand);//****************************************************************************
                 Log.d("Primero", bench.getDealerHand().toString());
                 //Mostrar segunda carta dealer
-                int level = mgame.getGame().getLevel(); //sustituir por dato level gameviewmodel
+                int level = mgame.getGame().getLevel();
                 int com = -1;
                 while (com==-1){
                     Log.d("Pimero", bench.getDealerHand().toString());
-                    com = casino.comprobarDealer((bench.getDealerHand()),level);//falta pasar parametro level
+                    com = casino.comprobarDealer((bench.getDealerHand()),level);
 
                     switch (com){
                         case -1:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
+                            try {
+                                wait(4000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             bench.addCardDealer();
+                            d_cards.setText(bench.getDealerHand().toString());
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
+                            try {
+                                wait(4000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case 0:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
+                            try {
+                                wait(4000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case 1:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
+                            try {
+                                wait(4000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             mplayer.getPlayer1().setScore(60);
-                            waitandSkipFragment(4000);
+                            try {
+                                wait(4000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             break;
                     }
                 }
@@ -149,6 +173,14 @@ public class GameFragment extends Fragment {
         mplayer= new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         bench.startAttributes();
     }
+    public void wait(int milsec) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+            }
+        }, milsec);
+    }
+
     public void waitandSkipFragment(int milsec) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -168,8 +200,8 @@ public class GameFragment extends Fragment {
         btn.setEnabled(false);
     }
     private void disabledButtons(){
-        btn_plantarse.setEnabled(false);
-        btn_pedirCarta.setEnabled(false);
+        btn_stand.setEnabled(false);
+        btn_hitCard.setEnabled(false);
     }
     private void loadCards(){
         loadCard(tv_p_hand,bench.getPlayerHand(),iv_playerCard);

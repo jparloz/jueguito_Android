@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
@@ -36,8 +37,17 @@ public class EndFragment extends Fragment {
         loadScore();
     }
     public void loadScore(){
+        int score;
         puntuacion = getView().findViewById(R.id.tv_acambiar);
         mplayer = new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
-        puntuacion.setText(String.valueOf(mplayer.getPlayer1().getScore()));
+        score = mplayer.getPlayer1().getScore();
+        puntuacion.setText(String.valueOf(score));
+        ImageView iv_res = getView().findViewById(R.id.iv_result);
+
+        if (score>50){
+            iv_res.setImageResource(R.drawable.win);
+        }
+
+
     }
 }

@@ -9,41 +9,53 @@
     tools:context=".GameFragment">
 
     <Button
-        android:id="@+id/btn_pedirCarta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pedir Carta"
+        android:id="@+id/btn_hit_card"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
+        android:text="Hit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/btn_plantarse"
+        android:id="@+id/btn_stand"
         android:layout_width="129dp"
         android:layout_height="48dp"
-        android:text="Plantarse"
+        android:text="Stand"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <TextView
-        android:id="@+id/tv_cartasJugador"
+        android:id="@+id/tv_player_cards"
         android:layout_width="338dp"
         android:layout_height="49dp"
         android:text="TextView"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.904" />
+
+    <TextView
+        android:id="@+id/tv_dealer_cards"
+        android:layout_width="338dp"
+        android:layout_height="49dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.263" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -120,6 +132,6 @@
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintVertical_bias="0.071" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
