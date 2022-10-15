@@ -68,4 +68,8 @@ public class Card {
     public int getValue(){
         return value;
     }
+
+    public String getSuit() {
+        return suit;
+    }
 }

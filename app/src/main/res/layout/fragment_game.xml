@@ -58,7 +58,7 @@
         app:layout_constraintVertical_bias="0.025" />
 
     <ImageView
-        android:id="@+id/iv_cartaDealer"
+        android:id="@+id/iv_dealerCard"
         android:layout_width="70dp"
         android:layout_height="102dp"
         android:src="@drawable/carta"
@@ -70,28 +70,16 @@
         app:layout_constraintVertical_bias="0.025" />
 
     <ImageView
-        android:id="@+id/iv_cartaJugador"
+        android:id="@+id/iv_playerCard"
         android:layout_width="70dp"
         android:layout_height="102dp"
         android:src="@drawable/carta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.351"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
-
-    <ImageView
-        android:id="@+id/iv_cartaJugador2"
-        android:layout_width="70dp"
-        android:layout_height="102dp"
-        android:src="@drawable/carta"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintVertical_bias="0.772" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -106,7 +94,7 @@
         app:layout_constraintVertical_bias="0.026" />
 
     <TextView
-        android:id="@+id/tv_p_hand1"
+        android:id="@+id/tv_p_hand"
         android:layout_width="41dp"
         android:layout_height="41dp"
         android:text="7"
@@ -115,13 +103,12 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.746" />
 
     <TextView
-        android:id="@+id/tv_d_hand1"
+        android:id="@+id/tv_d_hand"
         android:layout_width="41dp"
         android:layout_height="41dp"
         android:text="7"
@@ -134,20 +121,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068" />
-
-    <TextView
-        android:id="@+id/tv_p_hand2"
-        android:layout_width="41dp"
-        android:layout_height="41dp"
-        android:text="7"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
