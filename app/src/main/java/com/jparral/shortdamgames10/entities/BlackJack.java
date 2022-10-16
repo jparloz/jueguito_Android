@@ -1,12 +1,5 @@
 package com.jparral.shortdamgames10.entities;
 
-import android.util.Log;
-
-import androidx.lifecycle.ViewModelProvider;
-
-import com.jparral.shortdamgames10.viewmodel.GameViewModel;
-import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
-
 import java.util.ArrayList;
 
 public class BlackJack {
@@ -16,7 +9,7 @@ public class BlackJack {
     }
 
     //comprobar
-    public int comprobar(ArrayList<Card> cards){
+    public int check(ArrayList<Card> cards){
         //-1= no llegas a 21; 0 = justo 21; 1 = te has pasado de 21
         int com = -1;
         int bill = 0;
@@ -32,7 +25,7 @@ public class BlackJack {
         return com;
     }
 
-    public int comprobarDealer(ArrayList<Card> cards, int level){
+    public int checkDealer(ArrayList<Card> cards, int level){
 
         int i = level;//devolver cuenta total
         int bill = 0;
@@ -91,7 +84,7 @@ public class BlackJack {
         return com;
     }
 
-    public int comparar(int player, int dealer){
+    public int compare(int player, int dealer){
         int i;
 
         if(player>dealer){

@@ -16,7 +16,7 @@ public class Card {
         return this.suit + " " + this.value;
 
     }
-    public String getValorString(){
+    public String getValorString(){//no hemos usado este método
 
         String name = "";
 

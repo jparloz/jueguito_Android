@@ -18,7 +18,7 @@ public class Dealer {
     public void startAttributes(){
         deck = new Deck();
         deck.shuffle();
-        Log.d("Pimero",deck.toString());
+        Log.d("Pimero",deck.toString());//Borrar antes de entregar
         playerHand = new ArrayList<Card>();
         dealerHand = new ArrayList<Card>();
         for (int i = 0; i < 2 ;i++ ){
@@ -28,7 +28,7 @@ public class Dealer {
             dealerHand.add(deck.getNextCard());
 
             deck.deleteFirstCard();
-            Log.d("Pimero",playerHand.get(i).toString() + " " +dealerHand.get(i).toString());
+            Log.d("Pimero",playerHand.get(i).toString() + " " +dealerHand.get(i).toString());//Borrar antes de entregar
         }
         Log.d("Pimero",deck.toString());
     }

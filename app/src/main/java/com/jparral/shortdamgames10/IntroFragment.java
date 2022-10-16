@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.jparral.shortdamgames10.entities.Game;
 import com.jparral.shortdamgames10.entities.Player;
 import com.jparral.shortdamgames10.viewmodel.GameViewModel;
 import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
@@ -21,7 +20,7 @@ import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
 public class IntroFragment extends Fragment {
     private EditText et_name;
     private GameViewModel mgame;
-    private Button btn_Cambio;
+    private Button btn_start;
     private Spinner sp;
     private PlayerViewModel mplayer = null;
     //TextView jugador;
@@ -45,7 +44,7 @@ public class IntroFragment extends Fragment {
         loadXML();
         Player player1= mplayer.getPlayer1();
         player1.setName(String.valueOf(et_name.getText()));
-        btn_Cambio.setOnClickListener(new View.OnClickListener() {
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dificultSrelector();
@@ -65,9 +64,9 @@ public class IntroFragment extends Fragment {
     public void loadXML(){
         mplayer = new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         mgame= new ViewModelProvider(getActivity()).get(GameViewModel.class);
-        btn_Cambio = getView().findViewById(R.id.btn_start);
-        et_name = getView().findViewById(R.id.et_nombre);
-        sp = getView().findViewById(R.id.sp_dif);
+        btn_start = getView().findViewById(R.id.btn_start);
+        et_name = getView().findViewById(R.id.et_name);
+        sp = getView().findViewById(R.id.sp_difficult);
         loadSpiner(sp);
 
     }

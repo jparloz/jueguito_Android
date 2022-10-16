@@ -15,7 +15,7 @@ import com.jparral.shortdamgames10.viewmodel.PlayerViewModel;
 
 
 public class EndFragment extends Fragment {
-    TextView puntuacion;
+    TextView score;
     PlayerViewModel mplayer;
     public EndFragment() {
     }
@@ -38,10 +38,10 @@ public class EndFragment extends Fragment {
     }
     public void loadScore(){
         int score;
-        puntuacion = getView().findViewById(R.id.tv_acambiar);
+        this.score = getView().findViewById(R.id.tv_toChange);
         mplayer = new ViewModelProvider(getActivity()).get(PlayerViewModel.class);
         score = mplayer.getPlayer1().getScore();
-        puntuacion.setText(String.valueOf(score));
+        this.score.setText(String.valueOf(score));
         ImageView iv_res = getView().findViewById(R.id.iv_result);
 
         if (score>50){

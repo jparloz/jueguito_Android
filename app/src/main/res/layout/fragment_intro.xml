@@ -12,7 +12,7 @@
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -22,20 +22,20 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
-        android:layout_width="279dp"
-        android:layout_height="219dp"
+        android:layout_width="369dp"
+        android:layout_height="257dp"
         android:src="@drawable/primerfragmento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tv_description"
         android:layout_width="350dp"
         android:layout_height="154dp"
-        android:text="Classic blackjack game. The goal is to add 21 with the cards you have been given. You can fold if you consider that your number is close enough to 21."
+        android:text="@string/classic_blackjack_game_the_goal_is_to_add_21_with_the_cards_you_have_been_given_you_can_fold_if_you_consider_that_your_number_is_close_enough_to_21"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="italic"
@@ -50,7 +50,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&quot;Mushroom&quot; Blackjack"
+        android:text="@string/quot_mushroom_quot_blackjack"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,11 +60,11 @@
         app:layout_constraintVertical_bias="0.067" />
 
     <EditText
-        android:id="@+id/et_nombre"
+        android:id="@+id/et_name"
         android:layout_width="156dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:hint="Name:"
+        android:hint="@string/name"
         android:inputType="textPersonName"
         android:textColorHint="#1C1B1B"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +75,7 @@
         app:layout_constraintVertical_bias="0.448" />
 
     <Spinner
-        android:id="@+id/sp_dif"
+        android:id="@+id/sp_difficult"
         android:layout_width="157dp"
         android:layout_height="50dp"
         android:minHeight="48dp"

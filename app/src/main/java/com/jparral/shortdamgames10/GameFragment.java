@@ -55,7 +55,7 @@ public class GameFragment extends Fragment {
         super.onStart();
         instanceObjects();
         loadCards();
-        Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));
+        Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));//A BORRAR
         cards=getView().findViewById(R.id.tv_player_cards);
         cards.setText(bench.getPlayerHand().toString());
         btn_hitCard = getView().findViewById(R.id.btn_hit_card);
@@ -65,8 +65,8 @@ public class GameFragment extends Fragment {
                 bench.addCardPlayer();
                 loadCard(tv_p_hand,bench.getPlayerHand(),iv_playerCard);
                 cards.setText(bench.getPlayerHand().toString());
-                int com=casino.comprobar(bench.getPlayerHand());
-                Log.d("Pimero", bench.getPlayerHand().toString());
+                int com=casino.check(bench.getPlayerHand());
+                Log.d("Pimero", bench.getPlayerHand().toString());// A BORRAR
                 switch (com){
                     case -1:
                         break;
@@ -89,14 +89,14 @@ public class GameFragment extends Fragment {
                 d_cards=getView().findViewById(R.id.tv_dealer_cards);
                 d_cards.setText(bench.getDealerHand().toString());
                 disabledButtons(btn_hitCard);
-                disabledButtons(btn_stand);//****************************************************************************
-                Log.d("Primero", bench.getDealerHand().toString());
-                //Mostrar segunda carta dealer
+                disabledButtons(btn_stand);
+                Log.d("Primero", bench.getDealerHand().toString());//a borrar
+
                 int level = mgame.getGame().getLevel();
                 int com = -1;
                 while (com==-1){
-                    Log.d("Pimero", bench.getDealerHand().toString());
-                    com = casino.comprobarDealer((bench.getDealerHand()),level);
+                    Log.d("Pimero", bench.getDealerHand().toString());//a borrar
+                    com = casino.checkDealer((bench.getDealerHand()),level);
 
                     switch (com){
                         case -1:
@@ -119,8 +119,8 @@ public class GameFragment extends Fragment {
                             break;
                     }
                 }
-                int final_game = casino.comparar(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
-                Log.d("Primero", String.valueOf(final_game));
+                int final_game = casino.compare(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
+                Log.d("Primero", String.valueOf(final_game));//a borrar
                 switch (final_game){
                     case-1:
                         mplayer.getPlayer1().setScore(20);

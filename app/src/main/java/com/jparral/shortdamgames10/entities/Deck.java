@@ -32,7 +32,7 @@ public class Deck {
     }
 
 
-    private void swapCards(int index1, int index2) { //cambiar cartas
+    private void swapCards(int index1, int index2) {
 
         Card hold;
 
@@ -41,7 +41,7 @@ public class Deck {
         myCards.set(index2,hold);
     }
 
-    public void shuffle()  { //barajar
+    public void shuffle()  {
         Random rn = new Random();
         for (int i = 0; i < 4; i++){
             for (int j = 0; j < myCards.size(); j++) {
