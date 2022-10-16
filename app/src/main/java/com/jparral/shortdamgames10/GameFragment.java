@@ -55,7 +55,6 @@ public class GameFragment extends Fragment {
         super.onStart();
         instanceObjects();
         loadCards();
-        Log.d("Pimero", String.valueOf(mgame.getGame().getLevel()));//A BORRAR
         cards=getView().findViewById(R.id.tv_player_cards);
         cards.setText(bench.getPlayerHand().toString());
         btn_hitCard = getView().findViewById(R.id.btn_hit_card);
@@ -66,13 +65,13 @@ public class GameFragment extends Fragment {
                 loadCard(tv_p_hand,bench.getPlayerHand(),iv_playerCard);
                 cards.setText(bench.getPlayerHand().toString());
                 int com=casino.check(bench.getPlayerHand());
-                Log.d("Pimero", bench.getPlayerHand().toString());// A BORRAR
                 switch (com){
                     case -1:
                         break;
                     case 0:
-                        disabledButtons(btn_hitCard);
-                        break;
+                        mplayer.getPlayer1().setScore(100);
+                        disabledButtons();
+                        waitandSkipFragment(4000);
                     case 1:
                         mplayer.getPlayer1().setScore(0);
                         disabledButtons();
@@ -90,54 +89,65 @@ public class GameFragment extends Fragment {
                 d_cards.setText(bench.getDealerHand().toString());
                 disabledButtons(btn_hitCard);
                 disabledButtons(btn_stand);
-                Log.d("Primero", bench.getDealerHand().toString());//a borrar
 
                 int level = mgame.getGame().getLevel();
                 int com = -1;
                 while (com==-1){
-                    Log.d("Pimero", bench.getDealerHand().toString());//a borrar
                     com = casino.checkDealer((bench.getDealerHand()),level);
+                    int final_game = casino.compare(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
 
                     switch (com){
                         case -1:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
                             bench.addCardDealer();
                             d_cards.setText(bench.getDealerHand().toString());
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
+                            switch (final_game){
+                                case-1:
+                                    mplayer.getPlayer1().setScore(20);
+                                    disabledButtons();
+                                    waitandSkipFragment(4000);
+                                    break;
+                                case 0:
+                                    mplayer.getPlayer1().setScore(50);
+                                    disabledButtons();
+                                    waitandSkipFragment(4000);
+                                    break;
+                                case 1:
+                                    mplayer.getPlayer1().setScore(80);
+                                    disabledButtons();
+                                    waitandSkipFragment(4000);
+                                    break;
+                            }
                             break;
                         case 0:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
+                            switch (final_game){
+                                case-1:
+                                    mplayer.getPlayer1().setScore(20);
+                                    disabledButtons();
+                                    waitandSkipFragment(4000);
+                                    break;
+                                case 0:
+                                    mplayer.getPlayer1().setScore(50);
+                                    disabledButtons();
+                                    waitandSkipFragment(4000);
+                                    break;
+                                case 1:
+                                    mplayer.getPlayer1().setScore(80);
+                                    disabledButtons();
+                                    waitandSkipFragment(4000);
+                                    break;
+                            }
                             break;
                         case 1:
                             loadCard(tv_d_hand,bench.getDealerHand(),iv_dealerCard);
-                            waitandSkipFragment(4000);
                             mplayer.getPlayer1().setScore(60);
                             waitandSkipFragment(4000);
                             break;
                     }
                 }
-                int final_game = casino.compare(bench.total_bill(bench.getPlayerHand()),bench.total_bill(bench.getDealerHand()));
-                Log.d("Primero", String.valueOf(final_game));//a borrar
-                switch (final_game){
-                    case-1:
-                        mplayer.getPlayer1().setScore(20);
-                        disabledButtons();
-                        waitandSkipFragment(4000);
-                        break;
-                    case 0:
-                        mplayer.getPlayer1().setScore(50);
-                        disabledButtons();
-                        waitandSkipFragment(4000);
-                        break;
-                    case 1:
-                        mplayer.getPlayer1().setScore(80);
-                        disabledButtons();
-                        waitandSkipFragment(4000);
-                        break;
-                }
+
             }
         });
 
