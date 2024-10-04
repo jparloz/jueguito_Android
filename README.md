@@ -1,2 +1,3 @@
-# ShortDAMGames10
+Jueguito basado en blackjack, nativo android
+
 
